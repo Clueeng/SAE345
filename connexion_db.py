@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, redirect, url_for, abort, fla
 import pymysql.cursors
 import os
 from dotenv import load_dotenv
+import logging
 
 load_dotenv()
 
@@ -16,6 +17,13 @@ def get_db():
             charset='utf8mb4',
             cursorclass=pymysql.cursors.DictCursor
         )
+        log = logging.getLogger('test')
+        log.setLevel(logging.DEBUG)
+        
+        log.info(f'Connecting to {os.environ.get("DATABASE")}'
+              f'with login {os.environ.get("LOGIN")} password {os.environ.get("PASSWORD")}'
+              f'and host {os.environ.get("HOST")}')
+        
         print(f'Connecting to {os.environ.get("DATABASE")}'
               f'with login {os.environ.get("LOGIN")} password {os.environ.get("PASSWORD")}'
               f'and host {os.environ.get("HOST")}')
