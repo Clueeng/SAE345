@@ -16,6 +16,9 @@ def get_db():
             charset='utf8mb4',
             cursorclass=pymysql.cursors.DictCursor
         )
+        print(f'Connecting to {os.environ.get("DATABASE")}'
+              f'with login {os.environ.get("LOGIN")} password {os.environ.get("PASSWORD")}'
+              f'and host {os.environ.get("HOST")}')
         activate_db_options(db)
     return db
 
