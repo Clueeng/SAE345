@@ -18,6 +18,7 @@ def get_db():
             host=os.environ.get("HOST"),
             user=os.environ.get("LOGIN"),
             password=os.environ.get("PASSWORD"),
+            port=os.environ.get("DB_HOST"),
             database=os.environ.get("DATABASE"),
             charset='utf8mb4',
             cursorclass=pymysql.cursors.DictCursor
