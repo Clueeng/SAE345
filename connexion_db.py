@@ -7,6 +7,11 @@ import logging
 load_dotenv()
 
 def get_db():
+        
+    print(f'Connecting to {os.environ.get("DATABASE")}'
+            f'with login {os.environ.get("LOGIN")} password {os.environ.get("PASSWORD")}'
+            f'and host {os.environ.get("HOST")}')
+    
     db = getattr(g, '_database', None)
     if db is None:
         db = g._database = pymysql.connect(
@@ -21,10 +26,6 @@ def get_db():
         log.setLevel(logging.DEBUG)
         
         log.info(f'Connecting to {os.environ.get("DATABASE")}'
-              f'with login {os.environ.get("LOGIN")} password {os.environ.get("PASSWORD")}'
-              f'and host {os.environ.get("HOST")}')
-        
-        print(f'Connecting to {os.environ.get("DATABASE")}'
               f'with login {os.environ.get("LOGIN")} password {os.environ.get("PASSWORD")}'
               f'and host {os.environ.get("HOST")}')
         activate_db_options(db)
