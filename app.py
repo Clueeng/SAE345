@@ -35,7 +35,6 @@ def close_connection(exception):
 
 @app.route('/')
 def show_accueil():
-    get_db()
     if 'role' in session:
         if session['role'] == 'ROLE_admin':
             return redirect('/admin/commande/index')
