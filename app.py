@@ -25,9 +25,6 @@ from controllers.client_liste_envies import *
 app = Flask(__name__)
 app.secret_key = 'une cle(token) : grain de sel(any random string)'
 
-# tEST
-db = get_db()
-
 
 @app.teardown_appcontext
 def close_connection(exception):
@@ -38,6 +35,7 @@ def close_connection(exception):
 
 @app.route('/')
 def show_accueil():
+    get_db()
     if 'role' in session:
         if session['role'] == 'ROLE_admin':
             return redirect('/admin/commande/index')
@@ -87,5 +85,6 @@ app.register_blueprint(admin_commentaire)
 
 
 if __name__ == '__main__':
+
     app.run()
 

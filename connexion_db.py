@@ -11,7 +11,7 @@ def get_db():
     print(f'Connecting to {os.environ.get("DATABASE")}'
             f'with login {os.environ.get("LOGIN")} password {os.environ.get("PASSWORD")}'
             f'and host {os.environ.get("HOST")}')
-    
+            
     db = getattr(g, '_database', None)
     if db is None:
         db = g._database = pymysql.connect(
