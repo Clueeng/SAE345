@@ -25,6 +25,9 @@ from controllers.client_liste_envies import *
 app = Flask(__name__)
 app.secret_key = 'une cle(token) : grain de sel(any random string)'
 
+# tEST
+db = get_db()
+
 
 @app.teardown_appcontext
 def close_connection(exception):
