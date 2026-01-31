@@ -37,10 +37,10 @@ def get_logger():
 
 @app.teardown_appcontext
 def close_connection(exception):
-    print("CLOSED CONNECTION")
-    get_logger().log(1, "CLOSED CONNECTION")
     db = getattr(g, '_database', None)
     if db is not None:
+        print("CLOSED CONNECTION pr")
+        get_logger().log(1, "CLOSED CONNECTION")
         db.close()
 
 
