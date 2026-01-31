@@ -3,7 +3,7 @@ import pymysql.cursors
 import os
 from dotenv import load_dotenv
 import logging
-from app import get_logger
+from logger import get_logger
 
 load_dotenv()
 

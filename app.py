@@ -21,20 +21,9 @@ from controllers.admin_type_article import *
 from controllers.admin_dataviz import *
 from controllers.admin_commentaire import *
 from controllers.client_liste_envies import *
-
-import logging
+from logger import get_logger
 app = Flask(__name__)
 app.secret_key = 'une cle(token) : grain de sel(any random string)'
-
-logger = None
-
-def get_logger():
-    global logger
-    if logger is None:
-        logging.basicConfig(level=logging.INFO)
-        logger = logging.getLogger('test')
-        logger.setLevel(logging.INFO)
-    return logger
 
 @app.teardown_appcontext
 def close_connection(exception):
