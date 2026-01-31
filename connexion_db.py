@@ -7,8 +7,9 @@ import logging
 load_dotenv()
 
 def get_db():
-        
-    print(f'Connecting to {os.environ.get("DATABASE")}'
+    log = logging.getLogger('test')
+    log.setLevel(logging.DEBUG)
+    log.info(f'Connecting to {os.environ.get("DATABASE")}'
             f'with login {os.environ.get("LOGIN")} password {os.environ.get("PASSWORD")}'
             f'and host {os.environ.get("HOST")}')
             
@@ -23,8 +24,6 @@ def get_db():
             charset='utf8mb4',
             cursorclass=pymysql.cursors.DictCursor
         )
-        log = logging.getLogger('test')
-        log.setLevel(logging.DEBUG)
         
         log.info(f'Connecting to {os.environ.get("DATABASE")}'
               f'with login {os.environ.get("LOGIN")} password {os.environ.get("PASSWORD")}'

@@ -22,12 +22,22 @@ from controllers.admin_dataviz import *
 from controllers.admin_commentaire import *
 from controllers.client_liste_envies import *
 
+import logging
 app = Flask(__name__)
 app.secret_key = 'une cle(token) : grain de sel(any random string)'
 
+logger = None
+
+def get_logger():
+    global logger
+    if logger is None:
+        logger = logging.getLogger('test')
+        logger.setLevel(logging.CRITICAL)
+    return logger
 
 @app.teardown_appcontext
 def close_connection(exception):
+    get_logger().log(1, "CLOSED CONNECTION")
     db = getattr(g, '_database', None)
     if db is not None:
         db.close()
@@ -35,6 +45,7 @@ def close_connection(exception):
 
 @app.route('/')
 def show_accueil():
+    get_logger().log(1, "SHOW ACCUEIL")
     if 'role' in session:
         if session['role'] == 'ROLE_admin':
             return redirect('/admin/commande/index')
@@ -50,7 +61,9 @@ def show_accueil():
 
 @app.before_request
 def before_request():
-     if request.path.startswith('/admin') or request.path.startswith('/client'):
+    get_logger().log(1, "SHOW ACCUEIL")
+
+    if request.path.startswith('/admin') or request.path.startswith('/client'):
         print('session start with /admin or /client')
         if 'role' not in session:
             return redirect('/login')
