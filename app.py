@@ -37,6 +37,7 @@ def get_logger():
 
 @app.teardown_appcontext
 def close_connection(exception):
+    print("CLOSED CONNECTION")
     get_logger().log(1, "CLOSED CONNECTION")
     db = getattr(g, '_database', None)
     if db is not None:
@@ -45,6 +46,8 @@ def close_connection(exception):
 
 @app.route('/')
 def show_accueil():
+
+    print("SHOW ACCUEIL")
     get_logger().log(1, "SHOW ACCUEIL")
     if 'role' in session:
         if session['role'] == 'ROLE_admin':
