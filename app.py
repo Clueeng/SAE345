@@ -97,7 +97,7 @@ app.register_blueprint(admin_commentaire)
 
 
 if __name__ == '__main__':
-    print("test")
+    print("test yes")
     get_logger().info("test")
     app.run()
 
