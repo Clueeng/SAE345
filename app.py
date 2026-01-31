@@ -31,8 +31,9 @@ logger = None
 def get_logger():
     global logger
     if logger is None:
+        logging.basicConfig(level=logging.INFO)
         logger = logging.getLogger('test')
-        logger.setLevel(logging.CRITICAL)
+        logger.setLevel(logging.INFO)
     return logger
 
 @app.teardown_appcontext
@@ -64,6 +65,7 @@ def show_accueil():
 
 @app.before_request
 def before_request():
+    print("BEFORE REQUEST")
     get_logger().log(1, "SHOW ACCUEIL")
 
     if request.path.startswith('/admin') or request.path.startswith('/client'):
